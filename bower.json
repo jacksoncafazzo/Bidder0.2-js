@@ -1,0 +1,27 @@
+{
+  "name": "alarm-clock",
+  "description": "best alarm clock",
+  "main": "index.js",
+  "authors": [
+    "Jackson and Ramon"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "alarm",
+    "clock"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "bootstrap": "^3.3.6",
+    "moment": "^2.12.0"
+  }
+}
