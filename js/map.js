@@ -1,11 +1,9 @@
 var ol = require('openlayers');
 var latLng = [];
-var mapCount = 0;
 
-exports.initialize = function() {
-  mapCount =+ 1;
+exports.initialize = function(mapCount) {
   var map = new ol.Map({
-    target: 'map',
+    target: 'map' + mapCount,
     layers: [
       new ol.layer.Tile({
         source: new ol.source.OSM()
@@ -18,20 +16,27 @@ exports.initialize = function() {
   });
 }
 
-exports.setMapLocation = function (coords) {
-var webMercator = ol.proj.fromLonLat(coords);
-map = new ol.Map({
-  target: 'map' + mapCount,
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM()
+exports.setMapLocation = function (coords, mapCount) {
+  console.log(coords);
+  lonLat = [coords.lon, coords.lat]
+  var webMercator = ol.proj.fromLonLat(lonLat);
+  console.log(webMercator);
+  map = new ol.Map({
+    target: 'map' + mapCount,
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: webMercator,
+      zoom: 5
     })
-  ],
-  view: new ol.View({
-    center: webMercator,
-    zoom: 5
   });
+  return map;
 }
+
+
 
 exports.addClouds = function() {
   var layer_cloud = new OpenLayers.Layer.XYZ(

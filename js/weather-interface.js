@@ -1,10 +1,13 @@
 var apiKey = require('./../.env').apiKey;
 var map = require('./../js/map.js')
+var mapCount = 0;
 
 $(document).ready(function() {
-  map.initialize();
-  $('#weatherLocation').click(function() {
+  mapCount =+ 1;
+  map.initialize(mapCount);
+  $('#weatherLocation').click(function(event) {
     event.preventDefault();
+    mapCount =+ 1;
     var city = $('#location').val();
     $('#location').val('');
     $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + apiKey).then(function(response) {
@@ -15,9 +18,8 @@ $(document).ready(function() {
       $('.showWeather').append('<li>The temperature is: ' + response.main.temp + 'degrees Farenheit');
       $('.showWeather').append('<li>This is the weather description: ' + response.weather[0].description + '</li>');
       console.log();
-      map.setMapLocation(response.coord)
-      map.addClouds();
-      map.addPrecipitation();
+      $('#map').append('<li id="map"' + mapCount + '></li>')
+      map.setMapLocation(response.coord, mapCount).addClouds().addPrecipitation();
     }).fail(function(error) {
       $('.showWeather').text(error.message);
     });
