@@ -1,6 +1,8 @@
 var apiKey = require('./../.env').apiKey;
+var map = require('./../js/map.js')
 
 $(document).ready(function() {
+  map.initialize();
   $('#weatherLocation').click(function() {
     event.preventDefault();
     var city = $('#location').val();
@@ -12,7 +14,10 @@ $(document).ready(function() {
       $('.showWeather').append("<li>and the pressure is: " + response.main.pressure + '</li>');
       $('.showWeather').append('<li>The temperature is: ' + response.main.temp + 'degrees Farenheit');
       $('.showWeather').append('<li>This is the weather description: ' + response.weather[0].description + '</li>');
-      $('.showWeather').append('<li>');
+      console.log();
+      map.setMapLocation(response.coord)
+      map.addClouds();
+      map.addPrecipitation();
     }).fail(function(error) {
       $('.showWeather').text(error.message);
     });
