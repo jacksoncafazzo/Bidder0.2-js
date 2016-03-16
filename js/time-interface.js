@@ -10,5 +10,5 @@ $(document).ready(function() {
     }
     $('#currentTime').html(update().format('LTS'));
   };
-  setInterval(clock, 1000)
+  setInterval(clock, 1000);
   });
