@@ -9,20 +9,26 @@
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h1>Hi there.</h1>
-      <h3 id="time"></h3>
-      <h4 id="alarmPost"></h4>
+      <h1>Hi there. What time is it? I'll tell you.</h1>
+      <h2 id="currentTime"></h2>
+      <h4>Current Alarms:</h4>
+      <ul id="alarms" class="list-group">
+
+      </ul>
     </div>
-  </div>
+
 
   <form id="alarmForm">
-    <label for="alarm">Enter a time:</label>
-    <input id="alarm" type="time">
-    <button type="submit">Submit</button>
+    <div class="form-group">
+      <label for="alarm">Set an alarm time:</label>
+      <input id="alarm" type="time" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-default">Add alarm time</button>
   </form>
-  <ul id="solution"></ul>
+  <h1 style="display:none; color:red" id="buzzer">ANOTHER SOUNDBOY DYING, WHOA, HEY!</h1>
 
 
   <a href="weather.html">Click for the weather...</a>
+  </div>
 </body>
 </html>

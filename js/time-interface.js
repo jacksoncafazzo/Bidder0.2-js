@@ -1,27 +1,14 @@
-var alarmObj = require('./../js/time.js');
-var time = moment().format('h:mm:ss A MMMM Do YYYY');
-
-
-function updateTime() {
-  time = moment().format('h:mm:ss A MMMM Do YYYY');
-  document.getElementById('time').innerHTML = time;
-  if (alarm === moment().format('h:mm:ss A MMMM Do YYYY'))
-    return console.log("DINGDINGDINGDINGDINGDINGDINGDINGDINGDING");
-  }
-  setTimeout(updateTime, 1000);
-}
-
-function ringTheAlarm() {
-
-};
+var update = require('./../js/update.js').update;
+var ringTheAlarm = require('./../js/alarm.js').ringTheAlarm;
 
 $(document).ready(function() {
-  $("#time").text(updateTime());
-
-  $("#alarmForm").submit(function(event) {
-    event.preventDefault();
-    var alarm = $("#alarm").val();
-    ringTheAlarm(alarm);
-    document.getElementById('#alarmPost').innerHTML = '<h4>This is your alarm: ' + alarm + '</h4>';
+  clock = function() {
+    var dingding = ringTheAlarm(alarmMoment, update());
+    console.log("your alarm says: " + dingding);
+    if(dingding === true) {
+      $('#buzzer').fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500);
+    }
+    $('#currentTime').html(update().format('LTS'));
+  };
+  setInterval(clock, 1000)
   });
-});
